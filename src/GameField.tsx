@@ -1,83 +1,35 @@
-import { Component } from 'react';
+import * as React from 'react';
+import Figure from './GameFigure';
 
-class GameField extends Component<any, any> {
-	constructor(props: any) {
+
+class GameField extends React.Component<any, any>
+{
+	field: any;
+	indexTr: any;
+
+	constructor(props: any)
+	{
 		super(props);
-		this.state = {field: [[], [], [], [], [], [], [], [], [], []]};
-
-		for(let i = 0; i < 10; i++)
-		{
-			for(let k = 0; k < 10; k++)
-			{
-				this.state.field[i][k] = 1;
-			}
-		}
+		this.field = props.value;
+		this.indexTr = props.index;
 	}
 
-	RenderGameField = (cellValue: number) => {
-		switch(cellValue)
-		{
-			case 1:
-				return (
-					<>
-						<span>&#9744;</span>
-					</>
-				);
-			
-			case 3:
-				return (
-					<>
-						<span>&#9746;</span>
-					</>
-				);
-		}
-	}
-
-	GunClick = (eventClick: any) => {
-		// if(могу ли делать выстрел?)
-		let column = eventClick.target.offsetParent;
-		let row = column.parentNode;
-		
-		switch(this.state.field[row.className][column.className])
-		{
-			case 1:
-				this.state.field[row.className][column.className] = 3;
-		}
-
-		this.setState({field: this.state.field});
-	}
-
-	render() {
+	render()
+	{
 		return (
 			<>
-				<table>
-					<tbody>
-						<tr className="0">
-							<td className="0" onClick={this.GunClick}>{this.RenderGameField(this.state.field[0][0])}</td>
-							<td className="1" onClick={this.GunClick}>{this.RenderGameField(this.state.field[0][1])}</td>
-							<td>{this.RenderGameField(this.state.field[0][2])}</td>
-							<td>{this.RenderGameField(this.state.field[0][3])}</td>
-							<td>{this.RenderGameField(this.state.field[0][4])}</td>
-							<td>{this.RenderGameField(this.state.field[0][5])}</td>
-							<td>{this.RenderGameField(this.state.field[0][6])}</td>
-							<td>{this.RenderGameField(this.state.field[0][7])}</td>
-							<td>{this.RenderGameField(this.state.field[0][8])}</td>
-							<td>{this.RenderGameField(this.state.field[0][9])}</td>
-						</tr>
-						<tr className="1">
-							<td className="0" onClick={this.GunClick}>{this.RenderGameField(this.state.field[1][0])}</td>
-							<td className="1">{this.RenderGameField(this.state.field[1][1])}</td>
-							<td>{this.RenderGameField(this.state.field[1][2])}</td>
-							<td>{this.RenderGameField(this.state.field[0][3])}</td>
-							<td>{this.RenderGameField(this.state.field[0][4])}</td>
-							<td>{this.RenderGameField(this.state.field[0][5])}</td>
-							<td>{this.RenderGameField(this.state.field[0][6])}</td>
-							<td>{this.RenderGameField(this.state.field[0][7])}</td>
-							<td>{this.RenderGameField(this.state.field[0][8])}</td>
-							<td>{this.RenderGameField(this.state.field[0][9])}</td>
-						</tr>
-					</tbody>
-				</table>
+				<tr className={this.indexTr}>
+					<Figure value={this.field[0]} index={0} />
+					<Figure value={this.field[1]} index={1} />
+					<Figure value={this.field[2]} index={2} />
+					<Figure value={this.field[3]} index={3} />
+					<Figure value={this.field[4]} index={4} />
+					<Figure value={this.field[5]} index={5} />
+					<Figure value={this.field[6]} index={6} />
+					<Figure value={this.field[7]} index={7} />
+					<Figure value={this.field[8]} index={8} />
+					<Figure value={this.field[9]} index={9} />
+				</tr>
 			</>
 		);
 	}

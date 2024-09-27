@@ -1,12 +1,15 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import GameField from './GameField';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
-  <React.StrictMode>
-    <GameField />
-  </React.StrictMode>
+  <>
+    <div className='mt-3 row'>
+    <App/>
+    </div>
+  </>
 );
